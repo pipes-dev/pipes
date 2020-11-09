@@ -1,0 +1,17 @@
+{
+    "name": "pipes/pipes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pipes",
+            "email": "devops@startaideia.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pipes\\": "src/"
+        }
+    },
+    "require": {}
+}
