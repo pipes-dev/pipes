@@ -44,6 +44,6 @@ class PipesInstallCommand extends Command
      */
     public function handle()
     {
-        $this->stream->send('_pipes::commands:install');
+        $this->stream->send('_pipes::commands:install', $this);
     }
 }
