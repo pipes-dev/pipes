@@ -2,17 +2,27 @@
 
 namespace Pipes;
 
-use Illuminate\Support\ServiceProvider;
-use Pipes\Commands\PipesCommand;
+use Pipes\Support\ServiceProvider;
+use Illuminate\Pipeline\Pipeline;
 
 class PipesServiceProvider extends ServiceProvider
 {
+    /**
+     * Library actions
+     *
+     */
+    protected $_actions = [
+        '_pipes::commands:install' => [
+            \Pipes\Commands\Actions\Install\CreateAppFileAction::class
+        ]
+    ];
+
     /**
      * Pipes commands
      *
      */
     protected $_commands = [
-        PipesCommand::class,
+        \Pipes\Commands\PipesInstallCommand::class
     ];
 
     /**
@@ -30,6 +40,7 @@ class PipesServiceProvider extends ServiceProvider
 
             $this->commands($this->_commands);
         }
+        parent::boot();
     }
 
     /**
@@ -41,5 +52,10 @@ class PipesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/pipes.php', 'pipes');
+
+        // Create stream singleton
+        $this->app->singleton('Pipes\\Stream\\Stream', function () {
+            return new \Pipes\Stream\Stream(resolve(Pipeline::class));
+        });
     }
 }
