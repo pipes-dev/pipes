@@ -12,12 +12,12 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_commands = [
-        PipesCommand::class
+        PipesCommand::class,
     ];
 
     /**
      * boot
-     * 
+     *
      * Initialize the library
      *
      */
@@ -34,9 +34,9 @@ class PipesServiceProvider extends ServiceProvider
 
     /**
      * register
-     * 
+     *
      * Register library
-     * 
+     *
      */
     public function register()
     {

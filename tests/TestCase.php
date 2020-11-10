@@ -7,10 +7,9 @@ use Pipes\PipesServiceProvider;
 
 class TestCase extends Orchestra
 {
-
     /**
      * getPackageProviders
-     * 
+     *
      * Register package service provider
      *
      */
