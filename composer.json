@@ -1,17 +1,55 @@
 {
     "name": "pipes.dev/pipes",
-    "type": "library",
+    "description": "",
+    "keywords": [
+        "pipes.dev",
+        "pipes"
+    ],
+    "homepage": "https://github.com/pipes.dev/pipes",
     "license": "MIT",
     "authors": [
         {
-            "name": "Pipes",
-            "email": "devops@startaideia.com.br"
+            "name": "Pipes.dev",
+            "email": "devops@startaideia.com.br",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
         }
     ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/contracts": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3",
+        "vimeo/psalm": "^3.11"
+    },
     "autoload": {
         "psr-4": {
-            "Pipes\\": "src/"
+            "Pipes\\": "src",
+            "Pipes\\Database\\Factories\\": "database/factories"
         }
     },
-    "require": {}
+    "autoload-dev": {
+        "psr-4": {
+            "Pipes\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipes\\PipesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
