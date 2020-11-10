@@ -2,8 +2,8 @@
 
 namespace Pipes;
 
-use Pipes\Support\ServiceProvider;
 use Illuminate\Pipeline\Pipeline;
+use Pipes\Support\ServiceProvider;
 
 class PipesServiceProvider extends ServiceProvider
 {
@@ -13,8 +13,8 @@ class PipesServiceProvider extends ServiceProvider
      */
     protected $_actions = [
         '_pipes::commands:install' => [
-            \Pipes\Commands\Actions\Install\CreateAppFileAction::class
-        ]
+            \Pipes\Commands\Actions\Install\CreateAppFileAction::class,
+        ],
     ];
 
     /**
@@ -22,7 +22,7 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_commands = [
-        \Pipes\Commands\PipesInstallCommand::class
+        \Pipes\Commands\PipesInstallCommand::class,
     ];
 
     /**

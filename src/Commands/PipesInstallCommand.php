@@ -21,14 +21,14 @@ class PipesInstallCommand extends Command
 
     /**
      * $stream
-     * 
+     *
      * @var Stream
      */
     private $stream;
 
     /**
      * __construct
-     * 
+     *
      * @author Gustavo Vilas Boas
      * @param Stream $stream Stream instance
      */

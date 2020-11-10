@@ -8,7 +8,7 @@ class StreamTest extends TestCase
 {
     /**
      * $stream
-     * 
+     *
      * @var Pipes\Stream\Stream
      */
     private $stream;

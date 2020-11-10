@@ -11,9 +11,9 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * boot
-     * 
+     *
      * Boot the actions
-     * 
+     *
      * @author Gustavo Vilas Boas
      */
     public function boot()
