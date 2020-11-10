@@ -16,7 +16,7 @@ class Stream
 
     /**
      * $pipeline
-     * 
+     *
      * Laravel's pipeline instance
      *
      */
@@ -37,9 +37,9 @@ class Stream
 
     /**
      * getActions
-     * 
+     *
      * Get actions attached to an event
-     * 
+     *
      * @author Gustavo Vilas Boas
      * @param string $event
      * @return array
@@ -63,6 +63,7 @@ class Stream
     {
         if (optional($this->actions)[$event]) {
             $this->actions[$event][] = $action;
+
             return;
         }
         $this->actions[$event] = [$action];
@@ -70,9 +71,9 @@ class Stream
 
     /**
      * send
-     * 
+     *
      * Sends an event through the pipeline
-     * 
+     *
      * @author Gustavo Vilas Boas
      * @param string $event the event being dispatched
      * @param mixed $params params that will be processed by the pipeline

@@ -8,16 +8,16 @@ trait HasActions
 {
     /**
      * $tasks
-     * 
+     *
      * @var array
      */
     protected $_actions = [];
 
     /**
      * __bootActions
-     * 
+     *
      * Initialize the actions
-     * 
+     *
      * @author Gustavo Vilas Boas
      */
     public function __bootActions()
