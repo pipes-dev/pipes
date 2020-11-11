@@ -28,8 +28,8 @@ class StreamTest extends TestCase
     /** @test */
     public function it_should_add_ations_to_the_stream_test()
     {
-        $this->stream->attach('__tests', function ($text, $next) {
-            $next(strtoupper($text));
+        $this->stream->attach('__tests', function ($text) {
+            return strtoupper($text);
         });
 
         $actions = $this->stream->getActions('__tests');
@@ -41,8 +41,8 @@ class StreamTest extends TestCase
     /** @test */
     public function it_should_process_the_stream_test()
     {
-        $this->stream->attach('__capitalize', function ($text, $next) {
-            return $next(strtoupper($text));
+        $this->stream->attach('__capitalize', function ($text) {
+            return strtoupper($text);
         });
 
         $result = $this->stream->send('__capitalize', 'hello world');

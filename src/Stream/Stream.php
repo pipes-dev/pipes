@@ -2,6 +2,7 @@
 
 namespace Pipes\Stream;
 
+use Closure;
 use Illuminate\Pipeline\Pipeline;
 
 class Stream
@@ -79,18 +80,15 @@ class Stream
      * @param mixed $params params that will be processed by the pipeline
      * @return mixed
      */
-    public function send(string $event, ...$params)
+    public function send(string $event, $param = null)
     {
         // Get any tasks to run, if exists
-        $params = count($params) === 0 ? [null] : $params;
         $actions = $this->getActions($event);
 
         // Run the pipeline
-        return $this->pipeline->send(...$params)
+        return $this->pipeline->send($param)
             ->through($actions)
             ->via('execute')
-            ->then(function ($output) {
-                return $output;
-            });
+            ->thenReturn();
     }
 }

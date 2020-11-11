@@ -13,7 +13,10 @@ class PipesServiceProvider extends ServiceProvider
      */
     protected $_actions = [
         '_pipes::commands:install' => [
-            \Pipes\Commands\Actions\Install\CreatePackagesFolderAction::class
+            \Pipes\Actions\App\Install\CreatePackagesFolderAction::class
+        ],
+        '_pipes::commands:package:create' => [
+            \Pipes\Actions\Packages\Create\CopyStubsAction::class
         ]
     ];
 
@@ -22,7 +25,8 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_commands = [
-        \Pipes\Commands\PipesInstallCommand::class,
+        \Pipes\Commands\Packages\CreatePackageCommand::class,
+        \Pipes\Commands\App\InstallCommand::class,
     ];
 
     /**

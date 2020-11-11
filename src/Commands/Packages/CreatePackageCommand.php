@@ -1,23 +1,23 @@
 <?php
 
-namespace Pipes\Commands;
+namespace Pipes\Commands\Packages;
 
 use Illuminate\Console\Command;
 use Pipes\Stream\Stream;
 
-class PipesInstallCommand extends Command
+class CreatePackageCommand extends Command
 {
     /**
      * Command signature
      *
      */
-    public $signature = 'pipes:install';
+    public $signature = 'pipes:package-create {package}';
 
     /**
      * Command description
      *
      */
-    public $description = 'Install pipes into a new laravel project';
+    public $description = 'Creates a new pipes package';
 
     /**
      * $stream
@@ -44,6 +44,6 @@ class PipesInstallCommand extends Command
      */
     public function handle()
     {
-        $this->stream->send('_pipes::commands:install', $this);
+        $this->stream->send('_pipes::commands:package:create', $this);
     }
 }

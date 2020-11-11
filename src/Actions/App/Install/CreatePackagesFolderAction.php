@@ -1,6 +1,6 @@
 <?php
 
-namespace Pipes\Commands\Actions\Install;
+namespace Pipes\Actions\App\Install;
 
 class CreatePackagesFolderAction
 {
