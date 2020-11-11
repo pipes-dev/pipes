@@ -16,7 +16,9 @@ class PipesServiceProvider extends ServiceProvider
             \Pipes\Actions\App\Install\CreatePackagesFolderAction::class
         ],
         '_pipes::commands:package:create' => [
-            \Pipes\Actions\Packages\Create\CopyStubsAction::class
+            \Pipes\Actions\Packages\Create\CopyStubsAction::class,
+            \Pipes\Actions\Packages\Create\UpdateComposer::class,
+            \Pipes\Actions\Packages\Create\UpdateConfigFile::class,
         ]
     ];
 
