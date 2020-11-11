@@ -2,6 +2,15 @@
 
 namespace Pipes\Services;
 
+/**
+ * ComposerService
+ * 
+ * Service responsable for writing into projects
+ * composer.json
+ *
+ * @author Gustavo Vilas Boas
+ * @since 11/11/2020
+ */
 class ComposerService
 {
 

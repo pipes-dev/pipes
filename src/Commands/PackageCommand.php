@@ -5,6 +5,14 @@ namespace Pipes\Commands;
 use Illuminate\Console\Command;
 use Pipes\Stream\Stream;
 
+/**
+ * PackageCommand
+ * 
+ * Interact with packages
+ *
+ * @author Gustavo Vilas Boas
+ * @since 11/11/2020
+ */
 class PackageCommand extends Command
 {
     /**

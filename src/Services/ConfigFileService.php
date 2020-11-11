@@ -4,6 +4,14 @@ namespace Pipes\Services;
 
 use Illuminate\Support\Str;
 
+/**
+ * ConfigFileService
+ * 
+ * Service responsable for writing into config/app.php
+ *
+ * @author Gustavo Vilas Boas
+ * @since 11/11/2020
+ */
 class ConfigFileService
 {
     /**

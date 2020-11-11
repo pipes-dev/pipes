@@ -5,6 +5,14 @@ namespace Pipes\Services;
 use Illuminate\Support\Str;
 use Exception;
 
+/**
+ * FileSystemService
+ * 
+ * Service responsable for interact with filesystem
+ *
+ * @author Gustavo Vilas Boas
+ * @since 11/11/2020
+ */
 class FileSystemService
 {
     /**

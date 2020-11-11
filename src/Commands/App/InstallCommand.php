@@ -5,6 +5,14 @@ namespace Pipes\Commands\App;
 use Illuminate\Console\Command;
 use Pipes\Stream\Stream;
 
+/**
+ * InstallCommand
+ * 
+ * Install pipes into a Laravel application
+ *
+ * @author Gustavo Vilas Boas
+ * @since 11/11/2020
+ */
 class InstallCommand extends Command
 {
     /**
