@@ -25,8 +25,8 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_commands = [
-        \Pipes\Commands\Packages\CreatePackageCommand::class,
         \Pipes\Commands\App\InstallCommand::class,
+        \Pipes\Commands\PackageCommand::class,
     ];
 
     /**

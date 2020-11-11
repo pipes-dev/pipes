@@ -1,23 +1,23 @@
 <?php
 
-namespace Pipes\Commands\Packages;
+namespace Pipes\Commands;
 
 use Illuminate\Console\Command;
 use Pipes\Stream\Stream;
 
-class CreatePackageCommand extends Command
+class PackageCommand extends Command
 {
     /**
      * Command signature
      *
      */
-    public $signature = 'pipes:package-create {package}';
+    public $signature = 'pipes:package {action} {package}';
 
     /**
      * Command description
      *
      */
-    public $description = 'Creates a new pipes package';
+    public $description = 'Using pipes packages system';
 
     /**
      * $stream
@@ -44,6 +44,6 @@ class CreatePackageCommand extends Command
      */
     public function handle()
     {
-        $this->stream->send('_pipes::commands:package:create', $this);
+        $this->stream->send('_pipes::commands:package:' . $this->argument('action'), $this);
     }
 }
