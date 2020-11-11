@@ -2,7 +2,6 @@
 
 namespace Pipes\Stream;
 
-use Closure;
 use Illuminate\Pipeline\Pipeline;
 
 class Stream
