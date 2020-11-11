@@ -2,7 +2,6 @@
 
 namespace Pipes\Stream;
 
-use Closure;
 use Illuminate\Pipeline\Pipeline;
 
 class Stream
@@ -27,6 +26,7 @@ class Stream
      * __construct
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      * @param Pipeline $pipeline Laravel's pipeline instance
      * @param array $actions initial actions
      */
@@ -42,6 +42,7 @@ class Stream
      * Get actions attached to an event
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      * @param string $event
      * @return array
      */
@@ -56,6 +57,7 @@ class Stream
      * Attach a action to a event
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      * @param string $event the event to attach the action
      * @param mixed $aciton the action to attach
      * @return void
@@ -76,6 +78,7 @@ class Stream
      * Sends an event through the pipeline
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      * @param string $event the event being dispatched
      * @param mixed $params params that will be processed by the pipeline
      * @return mixed

@@ -6,14 +6,19 @@ class ComposerService
 {
 
     /**
-     * Composer json content
+     * $content
      *
+     * @var arr
      */
     public $content;
 
     /**
+     * open
+     *
      * Open composer json file
      *
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function open()
     {
@@ -24,6 +29,8 @@ class ComposerService
     /**
      * Add namespace to composer
      *
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function addNamespace(string $namespace, string $path)
     {
@@ -32,20 +39,29 @@ class ComposerService
     }
 
     /**
-     * Add file to composer
-     *
+     * removeNamespace
+     * 
+     * Remove namespace from composer.json
+     * 
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
+     * @param string $namespace
      */
-    public function addFile(string $file)
+    public function removeNamespace(string $namespace)
     {
-        $files = $this->content['autoload']['files'];
-        $files[] = $file;
-        $this->content['autoload']['files'] = array_unique($files);
+        if (isset($this->content['autoload']['psr-4'][$namespace])) {
+            unset($this->content['autoload']['psr-4'][$namespace]);
+        }
         return $this;
     }
 
     /**
-     * Dump the autoload file
+     * dumpAutoload
      *
+     * Dump the autoload file
+     * 
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function dumpAutoload()
     {
@@ -54,8 +70,12 @@ class ComposerService
     }
 
     /**
+     * close
+     * 
      * Close composer json file
      *
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function close()
     {

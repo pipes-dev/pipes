@@ -18,6 +18,7 @@ class UpdateConfigFile
      * __constructor
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function __construct(ConfigFileService $configFileService)
     {
@@ -30,6 +31,7 @@ class UpdateConfigFile
      * Update config/app.php file with new content
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function execute($cli, $next)
     {

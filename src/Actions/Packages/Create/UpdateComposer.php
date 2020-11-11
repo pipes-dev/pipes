@@ -18,6 +18,7 @@ class UpdateComposer
      * __constructor
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function __construct(ComposerService $composerService)
     {
@@ -30,6 +31,7 @@ class UpdateComposer
      * Update composer.json file with new content
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function execute($cli, $next)
     {

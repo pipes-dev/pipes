@@ -15,9 +15,10 @@ class ServiceProvider extends BaseServiceProvider
      * Boot the actions
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function boot()
     {
-        $this->__bootActions(); // Initialize the actions
+        $this->__bootActions();
     }
 }

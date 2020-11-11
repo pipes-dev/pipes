@@ -19,6 +19,7 @@ trait HasActions
      * Initialize the actions
      *
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function __bootActions()
     {

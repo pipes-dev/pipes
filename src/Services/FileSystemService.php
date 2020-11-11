@@ -13,6 +13,7 @@ class FileSystemService
      * Get all files from target recursivelly
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      * @param string $target
      * @return array $result
      */
@@ -47,6 +48,7 @@ class FileSystemService
      * Replace all stub content from a folder
      * 
      * @author Gustavo Vilas Bôas
+     * @since 11/11/2020
      * @param string $target
      * @param array $template
      * @return bool
@@ -87,6 +89,7 @@ class FileSystemService
      * Copy and entire dir into another
      * 
      * @author Gustavo Vilas Bôas
+     * @since 11/11/2020
      * @param string $from
      * @param string $to
      * @throws Exception

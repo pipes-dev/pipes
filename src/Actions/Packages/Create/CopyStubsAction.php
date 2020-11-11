@@ -25,6 +25,7 @@ class CopyStubsAction
      * __constructor
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function __construct(FileSystemService $fileSystemService)
     {
@@ -38,6 +39,7 @@ class CopyStubsAction
      * Copy the stubs into packages folder
      * 
      * @author Gustavo Vilas Boas
+     * @since 11/11/2020
      */
     public function execute($cli, $next)
     {
