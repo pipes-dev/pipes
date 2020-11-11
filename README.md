@@ -20,13 +20,7 @@ You can install the package via composer:
 
 ```bash
 composer require pipes.dev/pipes
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Pipes\PipesServiceProvider" --tag="migrations"
-php artisan migrate
+php artisan pipes:install
 ```
 
 You can publish the config file with:
@@ -39,13 +33,10 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'stubs' => [
+        'path' => __DIR__ . '/../stubs'
+    ]
 ];
-```
-
-## Testing
-
-```bash
-composer test
 ```
 
 ## Changelog
@@ -55,10 +46,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Contributing
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
