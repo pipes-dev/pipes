@@ -35,9 +35,9 @@ class CopyStubsAction
 
     /**
      * execute
-     * 
+     *
      * Copy the stubs into packages folder
-     * 
+     *
      * @author Gustavo Vilas Boas
      * @since 11/11/2020
      */
