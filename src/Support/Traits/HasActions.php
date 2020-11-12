@@ -23,8 +23,8 @@ trait HasActions
      */
     public function __bootActions()
     {
-        foreach ($this->_actions as $event => $actions) {
-            foreach ($actions as $action) {
+        foreach ($this->_actions as $action) {
+            foreach ($action::$triggers as $event) {
                 Stream::attach($event, $action);
             }
         }

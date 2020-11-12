@@ -5,6 +5,17 @@ namespace Pipes\Actions\App\Install;
 class CreatePackagesFolderAction
 {
     /**
+     * $_triggers
+     *
+     * Events that trigger this action
+     *
+     * @var string[]
+     */
+    public static $triggers = [
+        '_pipes::commands:install'
+    ];
+
+    /**
      * execute
      *
      * Creates the packages folder in the root

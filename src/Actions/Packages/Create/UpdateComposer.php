@@ -8,6 +8,17 @@ use Throwable;
 class UpdateComposer
 {
     /**
+     * $_triggers
+     *
+     * Events that trigger this action
+     *
+     * @var string[]
+     */
+    public static $triggers = [
+        '_pipes::commands:package:create'
+    ];
+
+    /**
      * $composerService
      * 
      * @var ComposerService
