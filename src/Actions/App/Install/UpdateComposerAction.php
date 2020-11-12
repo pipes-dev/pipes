@@ -1,11 +1,11 @@
 <?php
 
-namespace Pipes\Actions\Packages\Create;
+namespace Pipes\Actions\App\Install;
 
 use Pipes\Services\ComposerService;
 use Throwable;
 
-class UpdateComposer
+class UpdateComposerAction
 {
     /**
      * $_triggers
@@ -15,7 +15,7 @@ class UpdateComposer
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:package:create'
+        '_pipes::commands:install'
     ];
 
     /**
@@ -46,14 +46,13 @@ class UpdateComposer
      */
     public function execute($cli, $next)
     {
-        $package = $cli->argument('package');
         $cli->line("[PIPES] Updating composer.json...");
 
         try {
 
             // Add the package namespace into composer.json
             $this->composerService->open()
-                ->addNamespace("Packages\\$package\\", ("packages/$package/"))
+                ->addNamespace("Packages\\", ("packages/"))
                 ->close()
                 ->dumpAutoload();
 

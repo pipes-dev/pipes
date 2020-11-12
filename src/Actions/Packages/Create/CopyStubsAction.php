@@ -2,7 +2,8 @@
 
 namespace Pipes\Actions\Packages\Create;
 
-use Pipes\Services\FileSystemService;
+use Illuminate\Filesystem\Filesystem;
+use Pipes\Services\TemplateService;
 use Throwable;
 
 class CopyStubsAction
@@ -19,18 +20,25 @@ class CopyStubsAction
     ];
 
     /**
-     * $stubsPath
-     * 
-     * @var string
-     */
-    private $stubsPath;
-
-    /**
      * $fileSystemService
      * 
      * @var FileSystemService
      */
-    private $fileSystemService;
+    private $__fileSystem;
+
+    /**
+     * $__templateService
+     * 
+     * @var TemplateService
+     */
+    private $__templateService;
+
+    /**
+     * $__stubsPath
+     * 
+     * @var string
+     */
+    private $__stubsPath;
 
     /**
      * __constructor
@@ -38,10 +46,13 @@ class CopyStubsAction
      * @author Gustavo Vilas Boas
      * @since 11/11/2020
      */
-    public function __construct(FileSystemService $fileSystemService)
-    {
-        $this->fileSystemService = $fileSystemService;
-        $this->stubsPath = config('pipes.stubs.path');
+    public function __construct(
+        Filesystem $fileSystem,
+        TemplateService $templateService
+    ) {
+        $this->__stubsPath = config('pipes.stubs.path');
+        $this->__templateService = $templateService;
+        $this->__fileSystem = $fileSystem;
     }
 
     /**
@@ -60,14 +71,14 @@ class CopyStubsAction
         try {
 
             // Copy to folder
-            $this->fileSystemService->mirror(
-                $this->stubsPath . "/package",
+            $this->__fileSystem->copyDirectory(
+                $this->__stubsPath . "/package",
                 base_path("packages/$package")
 
             );
 
             // Replaces stub content
-            $this->fileSystemService->replaceStubsContent(base_path("packages/$package"), [
+            $this->__templateService->replaceContents(base_path("packages/$package"), [
                 ':package:' => $package
             ]);
 

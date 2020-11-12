@@ -1,11 +1,11 @@
 <?php
 
-namespace Pipes\Actions\Packages\Create;
+namespace Pipes\Actions\Packages\Remove;
 
 use Pipes\Services\ConfigFileService;
 use Throwable;
 
-class UpdateConfigFile
+class UpdateConfigFileAction
 {
     /**
      * $_triggers
@@ -15,7 +15,7 @@ class UpdateConfigFile
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:package:create'
+        '_pipes::commands:package:remove'
     ];
 
     /**
@@ -53,7 +53,7 @@ class UpdateConfigFile
 
             // Add provider to config/app.php
             $provider = sprintf("Packages\%s\%sServiceProvider::class", $package, $package);
-            $this->configFileService->addProvider($provider);
+            $this->configFileService->removeProvider($provider);
 
             $cli->info("[PIPES] config/app.php updated with success");
         } catch (Throwable $e) {

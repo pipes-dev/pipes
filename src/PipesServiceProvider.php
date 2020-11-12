@@ -2,6 +2,7 @@
 
 namespace Pipes;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Pipeline\Pipeline;
 use Pipes\Support\ServiceProvider;
 
@@ -12,10 +13,17 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_actions = [
+        // Install pipes in the laravel application
         \Pipes\Actions\App\Install\CreatePackagesFolderAction::class,
+        \Pipes\Actions\App\Install\UpdateComposerAction::class,
+
+        // Create package actions
         \Pipes\Actions\Packages\Create\CopyStubsAction::class,
-        \Pipes\Actions\Packages\Create\UpdateComposer::class,
-        \Pipes\Actions\Packages\Create\UpdateConfigFile::class,
+        \Pipes\Actions\Packages\Create\UpdateConfigFileAction::class,
+
+        // Remove package actions
+        \Pipes\Actions\Packages\Remove\UpdateConfigFileAction::class,
+        \Pipes\Actions\Packages\Remove\RemoveFolderAction::class,
     ];
 
     /**
@@ -42,6 +50,12 @@ class PipesServiceProvider extends ServiceProvider
 
             $this->commands($this->_commands);
         }
+
+        // Add get lines do file system macro
+        Filesystem::macro('getLines', function (string $path) {
+            return file($path);
+        });
+
         parent::boot();
     }
 

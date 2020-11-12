@@ -2,6 +2,7 @@
 
 namespace Pipes\Services;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 /**
@@ -14,6 +15,25 @@ use Illuminate\Support\Str;
  */
 class ConfigFileService
 {
+    /**
+     * __fileSystem
+     * 
+     * @var FileSystem
+     */
+    private $__fileSystem;
+
+    /**
+     * __construct
+     * 
+     * @author Gustavo Vilas Boas
+     * @since 12/11/2020
+     * @param FileSystem $fileSystem
+     */
+    public function __construct(Filesystem $fileSystem)
+    {
+        $this->__fileSystem = $fileSystem;
+    }
+
     /**
      * removeProvider
      * 
@@ -29,7 +49,7 @@ class ConfigFileService
         $provider = "        $provider,\n";
 
         // Get config content as array
-        $lines = file(base_path('config/app.php'));
+        $lines = $this->__fileSystem->getLines(base_path('config/app.php'));
 
         // Run trough every line
         foreach ($lines as $number => $line) {
@@ -41,7 +61,7 @@ class ConfigFileService
         }
 
         // Persist the file
-        file_put_contents(base_path('config/app.php'), join($lines));
+        $this->__fileSystem->replace(base_path('config/app.php'), join($lines));
     }
 
     /**
@@ -59,7 +79,7 @@ class ConfigFileService
         $this->removeProvider($provider);
 
         // Get config content as array
-        $lines = file(base_path('config/app.php'));
+        $lines = $this->__fileSystem->getLines(base_path('config/app.php'));
 
         // Initialize control variables
         $hasPassedToProviders = false;
@@ -86,6 +106,6 @@ class ConfigFileService
         ]);
 
         // Persist the file
-        file_put_contents(base_path('config/app.php'), join($lines));
+        $this->__fileSystem->replace(base_path('config/app.php'), join($lines));
     }
 }
