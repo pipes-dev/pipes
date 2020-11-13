@@ -3,16 +3,11 @@
 namespace Pipes\Eloquent\Traits;
 
 use Pipes\Stream\Facades\Stream;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 trait HasTriggers
 {
-    /**
-     * $_namespace
-     * 
-     * @var string
-     */
-    protected static $_namespace = '';
-
     /**
      * $__triggers
      * 
@@ -34,6 +29,24 @@ trait HasTriggers
     ];
 
     /**
+     * _guessNameSpace
+     * 
+     * Guess model triggers namespace
+     * 
+     * @author Gustavo Vilas Boas
+     * @since 11/11/2020
+     * @return string
+     */
+    protected static function _getNameSpace(): string
+    {
+        $namespace = get_class(resolve(static::class));
+
+        $parts = explode('\\', $namespace);
+
+        return Str::snake($parts[1]) . ':' . Str::snake(Arr::last($parts));
+    }
+
+    /**
      * bootHasTriggers
      * 
      * Boot triggers from this model
@@ -43,11 +56,13 @@ trait HasTriggers
      */
     public static function bootHasTriggers()
     {
-        Stream::send(static::$_namespace . ":boot", static::class);
+        $namespace = static::_getNameSpace();
 
-        foreach (static::$__triggers as $__trigger) {
-            static::{$__trigger}(function ($model) use ($__trigger) {
-                Stream::send(static::$_namespace . ":{$__trigger}", $model);
+        Stream::send($namespace . ":boot", static::class);
+
+        foreach (static::$__triggers as $trigger) {
+            static::{$trigger}(function ($model) use ($trigger, $namespace) {
+                Stream::send($namespace . ":{$trigger}", $model);
             });
         }
     }
