@@ -3,7 +3,23 @@
 namespace Packages\:package:\Domains\:folder:;
 
 use Illuminate\Database\Eloquent\Model;
+use Pipes\Eloquent\Traits\HasTriggers;
 
 class :model: extends Model
 {
+    use HasTriggers;
+
+    /**
+     * $_namespace
+     * 
+     * @var string
+     */
+    protected static $_namespace = ':trigger:';
+
+    /**
+     * $guarded
+     * 
+     * @var array
+     */
+    public $guarded = [];
 }

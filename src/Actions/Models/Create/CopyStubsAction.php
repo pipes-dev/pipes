@@ -69,6 +69,7 @@ class CopyStubsAction
         $package = $cli->options()['package'];
         $model = $cli->argument('name');
         $folder = Str::plural($model);
+        $trigger = Str::snake($package) . '::' . Str::snake($folder);
 
         $cli->line("[PIPES] Creating $model model as $package...");
 
@@ -89,6 +90,7 @@ class CopyStubsAction
 
             // Replaces stub content
             $this->__templateService->replaceContents($domainPath, [
+                ':trigger:' => $trigger,
                 ':package:' => $package,
                 ':folder:' => $folder,
                 ':model:' => $model,
