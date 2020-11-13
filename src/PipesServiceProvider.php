@@ -18,8 +18,8 @@ class PipesServiceProvider extends ServiceProvider
         \Pipes\Actions\App\Install\UpdateComposerAction::class,
 
         // Create package actions
-        \Pipes\Actions\Packages\Create\CopyStubsAction::class,
         \Pipes\Actions\Packages\Create\UpdateConfigFileAction::class,
+        \Pipes\Actions\Packages\Create\CopyStubsAction::class,
 
         // Remove package actions
         \Pipes\Actions\Packages\Remove\UpdateConfigFileAction::class,

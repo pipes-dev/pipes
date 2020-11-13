@@ -9,7 +9,16 @@ use Throwable;
 class CopyStubsAction
 {
     /**
-     * $_triggers
+     * $priority
+     * 
+     * Action priority level
+     * 
+     * @var int
+     */
+    public static $priority = 0;
+
+    /**
+     * $triggers
      *
      * Events that trigger this action
      *

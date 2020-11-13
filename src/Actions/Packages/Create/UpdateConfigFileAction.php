@@ -8,6 +8,15 @@ use Throwable;
 class UpdateConfigFileAction
 {
     /**
+     * $priority
+     * 
+     * Action priority level
+     * 
+     * @var int
+     */
+    public static $priority = 1;
+
+    /**
      * $_triggers
      *
      * Events that trigger this action
