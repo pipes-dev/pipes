@@ -41,7 +41,6 @@ class ConfigFileService
      * 
      * @author Gustavo Vilas Boas
      * @since 11/11/2020
-
      * @param string $provider
      */
     public function removeProvider(string $provider)

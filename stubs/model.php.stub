@@ -1,0 +1,9 @@
+<?php
+
+namespace Packages\:package:\Domains\:folder:;
+
+use Illuminate\Database\Eloquent\Model;
+
+class :model: extends Model
+{
+}

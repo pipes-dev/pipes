@@ -1,8 +1,9 @@
 <?php
 
-namespace Pipes\Actions\Packages\Create;
+namespace Pipes\Actions\Models\Create;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use Pipes\Services\TemplateService;
 use Throwable;
 
@@ -16,7 +17,7 @@ class CopyStubsAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:package:create'
+        '_pipes::commands:make:model'
     ];
 
     /**
@@ -65,23 +66,35 @@ class CopyStubsAction
      */
     public function execute($cli, $next)
     {
-        $package = $cli->argument('package');
-        $cli->line("[PIPES] Creating $package package...");
+        $package = $cli->options()['package'];
+        $model = $cli->argument('name');
+        $folder = Str::plural($model);
+
+        $cli->line("[PIPES] Creating $model model as $package...");
+
+        $domainPath = base_path("packages/$package/Domains/$folder");
 
         try {
 
+            // Create domain folder
+            if (!$this->__fileSystem->isDirectory($domainPath)) {
+                $this->__fileSystem->makeDirectory($domainPath);
+            }
+
             // Copy to folder
-            $this->__fileSystem->copyDirectory(
-                $this->__stubsPath . "/package",
-                base_path("packages/$package")
+            $this->__fileSystem->copy(
+                $this->__stubsPath . "/model.php.stub",
+                "$domainPath/$model.php.stub"
             );
 
             // Replaces stub content
-            $this->__templateService->replaceContents(base_path("packages/$package"), [
-                ':package:' => $package
+            $this->__templateService->replaceContents($domainPath, [
+                ':package:' => $package,
+                ':folder:' => $folder,
+                ':model:' => $model,
             ]);
 
-            $cli->info("[PIPES] $package was created with success!");
+            $cli->info("[PIPES] $model was created with success!");
         } catch (Throwable $e) {
             $cli->error($e->getMessage());
         }

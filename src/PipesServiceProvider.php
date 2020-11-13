@@ -24,6 +24,9 @@ class PipesServiceProvider extends ServiceProvider
         // Remove package actions
         \Pipes\Actions\Packages\Remove\UpdateConfigFileAction::class,
         \Pipes\Actions\Packages\Remove\RemoveFolderAction::class,
+
+        // Make model actions
+        \Pipes\Actions\Models\Create\CopyStubsAction::class,
     ];
 
     /**
@@ -33,6 +36,7 @@ class PipesServiceProvider extends ServiceProvider
     protected $_commands = [
         \Pipes\Commands\App\InstallCommand::class,
         \Pipes\Commands\PackageCommand::class,
+        \Pipes\Commands\MakeCommand::class
     ];
 
     /**
