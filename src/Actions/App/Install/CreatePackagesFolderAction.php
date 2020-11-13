@@ -14,7 +14,7 @@ class CreatePackagesFolderAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:install'
+        '_pipes::commands:install:app'
     ];
 
     /**

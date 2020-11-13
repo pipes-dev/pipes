@@ -15,7 +15,7 @@ class RemoveFolderAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:package:remove'
+        '_pipes::commands:remove:package'
     ];
 
     /**
@@ -47,7 +47,7 @@ class RemoveFolderAction
      */
     public function execute($cli, $next)
     {
-        $package = $cli->argument('package');
+        $package = $cli->argument('name');
         $cli->line("[PIPES] Removing $package package...");
 
         try {

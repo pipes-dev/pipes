@@ -27,6 +27,9 @@ class PipesServiceProvider extends ServiceProvider
 
         // Make model actions
         \Pipes\Actions\Models\Create\CopyStubsAction::class,
+
+        // Make aciton actions
+        \Pipes\Actions\Actions\Create\CopyStubsAction::class,
     ];
 
     /**
@@ -34,9 +37,9 @@ class PipesServiceProvider extends ServiceProvider
      *
      */
     protected $_commands = [
-        \Pipes\Commands\App\InstallCommand::class,
-        \Pipes\Commands\PackageCommand::class,
-        \Pipes\Commands\MakeCommand::class
+        \Pipes\Commands\InstallCommand::class,
+        \Pipes\Commands\RemoveCommand::class,
+        \Pipes\Commands\MakeCommand::class,
     ];
 
     /**

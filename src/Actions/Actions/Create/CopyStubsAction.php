@@ -1,9 +1,10 @@
 <?php
 
-namespace Pipes\Actions\Packages\Create;
+namespace Pipes\Actions\Actions\Create;
 
 use Illuminate\Filesystem\Filesystem;
 use Pipes\Services\TemplateService;
+use Illuminate\Support\Str;
 use Throwable;
 
 class CopyStubsAction
@@ -16,7 +17,7 @@ class CopyStubsAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:make:package'
+        '_pipes::commands:make:action'
     ];
 
     /**
@@ -65,23 +66,36 @@ class CopyStubsAction
      */
     public function execute($cli, $next)
     {
-        $package = $cli->argument('name');
-        $cli->line("[PIPES] Creating $package package...");
+        $namespace = Str::beforeLast($cli->argument('name'), '\\');
+        $classname = class_basename($cli->argument('name'));
+        $folder = str_replace('\\', '/', $namespace);
+        $package = $cli->options()['package'];
+
+        $cli->line("[PIPES] Creating $classname action at $package...");
+
+        $destFolder = base_path("packages/$package/Actions/$folder");
 
         try {
 
+            // Create domain folder
+            if (!$this->__fileSystem->isDirectory($destFolder)) {
+                $this->__fileSystem->makeDirectory($destFolder);
+            }
+
             // Copy to folder
-            $this->__fileSystem->copyDirectory(
-                $this->__stubsPath . "/package",
-                base_path("packages/$package")
+            $this->__fileSystem->copy(
+                $this->__stubsPath . "/action.php.stub",
+                "$destFolder/$classname.php.stub"
             );
 
             // Replaces stub content
-            $this->__templateService->replaceContents(base_path("packages/$package"), [
-                ':package:' => $package
+            $this->__templateService->replaceContents($destFolder, [
+                ':classname:' => $classname,
+                ':namespace:' => $namespace,
+                ':package:' => $package,
             ]);
 
-            $cli->info("[PIPES] $package was created with success!");
+            $cli->info("[PIPES] $classname was created with success!");
         } catch (Throwable $e) {
             $cli->error($e->getMessage());
         }

@@ -6,26 +6,26 @@ use Illuminate\Console\Command;
 use Pipes\Stream\Stream;
 
 /**
- * PackageCommand
+ * RemoveCommand
  * 
- * Interact with packages
+ * Remove a pipes resource
  *
  * @author Gustavo Vilas Boas
  * @since 11/11/2020
  */
-class PackageCommand extends Command
+class RemoveCommand extends Command
 {
     /**
      * Command signature
      *
      */
-    public $signature = 'pipes:package {action} {package}';
+    public $signature = 'pipes:remove {type} {name} {--package=?}';
 
     /**
      * Command description
      *
      */
-    public $description = 'Using pipes packages system';
+    public $description = 'Remove a pipes resource';
 
     /**
      * $stream
@@ -52,6 +52,7 @@ class PackageCommand extends Command
      */
     public function handle()
     {
-        $this->stream->send('_pipes::commands:package:' . $this->argument('action'), $this);
+        $type = $this->argument('type');
+        $this->stream->send("_pipes::commands:remove:$type", $this);
     }
 }

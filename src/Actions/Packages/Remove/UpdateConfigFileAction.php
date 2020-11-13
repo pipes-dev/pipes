@@ -15,7 +15,7 @@ class UpdateConfigFileAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:package:remove'
+        '_pipes::commands:remove:package'
     ];
 
     /**
@@ -46,7 +46,7 @@ class UpdateConfigFileAction
      */
     public function execute($cli, $next)
     {
-        $package = $cli->argument('package');
+        $package = $cli->argument('name');
         $cli->line("[PIPES] Updating config/app.php...");
 
         try {

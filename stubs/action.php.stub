@@ -1,0 +1,26 @@
+<?php
+
+namespace Packages\:package:\Actions\:namespace:;
+
+class :classname:
+{
+    /**
+     * $_triggers
+     *
+     * Events that trigger this action
+     *
+     * @var string[]
+     */
+    public static $triggers = [];
+
+    /**
+     * execute
+     *
+     * This method is executes when any of the triggers are dispatched
+     *
+     */
+    public function execute($args, $next)
+    {
+        return $next($args);
+    }
+}
