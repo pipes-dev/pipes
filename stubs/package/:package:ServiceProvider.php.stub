@@ -7,6 +7,13 @@ use Pipes\Support\ServiceProvider;
 class :package:ServiceProvider extends ServiceProvider
 {
     /**
+     * $_actions
+     * 
+     * @var array
+     */
+    protected $_actions = [];
+
+    /**
      * Register any application services.
      *
      * @return void
