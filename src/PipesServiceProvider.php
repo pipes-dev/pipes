@@ -3,42 +3,21 @@
 namespace Pipes;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Pipeline\Pipeline;
 use Pipes\Support\ServiceProvider;
+use Illuminate\Pipeline\Pipeline;
 
 class PipesServiceProvider extends ServiceProvider
 {
+
     /**
-     * Library actions
-     *
+     * $_actionsFolder
+     * 
+     * Location of package actions
+     * 
+     * @var array
      */
     protected $_actions = [
-        // Install pipes in the laravel application
-        \Pipes\Actions\App\Install\CreatePackagesFolderAction::class,
-        \Pipes\Actions\App\Install\UpdateComposerAction::class,
-
-        // Create package actions
-        \Pipes\Actions\Packages\Create\UpdateConfigFileAction::class,
-        \Pipes\Actions\Packages\Create\CopyStubsAction::class,
-
-        // Create package actions
-        \Pipes\Actions\Packages\Migration\MigrationAction::class,
-
-        // Remove package actions
-        \Pipes\Actions\Packages\Remove\UpdateConfigFileAction::class,
-        \Pipes\Actions\Packages\Remove\RemoveFolderAction::class,
-
-        // Make model actions
-        \Pipes\Actions\Models\Create\CopyStubsAction::class,
-
-        // Make action actions
-        \Pipes\Actions\Actions\Create\CopyStubsAction::class,
-
-        // Make controller actions
-        \Pipes\Actions\Controllers\Create\CopyStubsAction::class,
-
-        // List actions actions
-        \Pipes\Actions\Actions\Show\ListActionsAction::class
+        __DIR__ . '/Actions'
     ];
 
     /**

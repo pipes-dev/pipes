@@ -18,9 +18,13 @@ class :package:ServiceProvider extends ServiceProvider
     /**
      * $_actions
      * 
+     * Location of package actions
+     * 
      * @var array
      */
-    protected $_actions = [];
+    protected $_actions = [
+        __DIR__ . '/Actions'
+    ];
 
     /**
      * Register any application services.
