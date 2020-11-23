@@ -106,14 +106,19 @@ class Stream
      * @param mixed $params params that will be processed by the pipeline
      * @return mixed
      */
-    public function send(string $trigger, $param = null)
+    public function send(string $trigger, $param = null, $default = null)
     {
         // Get any tasks to run, if exists
         $actions = $this->getActions($trigger);
 
+        // Set a default action to pipeline
+        $default = $default ?? function ($args, $next) {
+            $next($args);
+        };
+
         // Run the pipeline
         return $this->pipeline->send($param)
-            ->through($actions)
+            ->through([...$actions, $default])
             ->via('execute')
             ->thenReturn();
     }

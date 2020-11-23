@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\:package:\Controllers\:namespace:;
+namespace Packages\:package:\Controllers:namespace:;
 
 class :classname:
 {

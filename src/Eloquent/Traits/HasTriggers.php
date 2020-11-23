@@ -37,7 +37,7 @@ trait HasTriggers
      * @since 11/11/2020
      * @return string
      */
-    protected static function _getNameSpace(): string
+    public static function getNameSpace(): string
     {
         $namespace = get_class(resolve(static::class));
 
@@ -56,7 +56,7 @@ trait HasTriggers
      */
     public static function bootHasTriggers()
     {
-        $namespace = static::_getNameSpace();
+        $namespace = static::getNameSpace();
 
         Stream::send($namespace . ":boot", static::class);
 

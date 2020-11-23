@@ -66,7 +66,7 @@ class CopyStubsAction
      */
     public function execute($cli, $next)
     {
-        $namespace = Str::beforeLast($cli->argument('name'), '\\');
+        $namespace = Str::contains($cli->argument('name'), '\\') ? '\\' . Str::beforeLast($cli->argument('name'), '\\') : '';
         $classname = class_basename($cli->argument('name'));
         $folder = str_replace($classname, '', str_replace('\\', '/', $namespace));
         $package = $cli->options()['package'];
