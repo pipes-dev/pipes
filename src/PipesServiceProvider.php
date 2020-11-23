@@ -33,6 +33,9 @@ class PipesServiceProvider extends ServiceProvider
 
         // Make controller actions
         \Pipes\Actions\Controllers\Create\CopyStubsAction::class,
+
+        // List actions actions
+        \Pipes\Actions\Actions\Show\ListActionsAction::class
     ];
 
     /**
@@ -43,6 +46,7 @@ class PipesServiceProvider extends ServiceProvider
         \Pipes\Commands\InstallCommand::class,
         \Pipes\Commands\RemoveCommand::class,
         \Pipes\Commands\MakeCommand::class,
+        \Pipes\Commands\ListCommand::class,
     ];
 
     /**

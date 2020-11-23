@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\:package:\Domains\:folder:;
+namespace Packages\:package:\Models\:folder:;
 
 use Illuminate\Database\Eloquent\Model;
 use Pipes\Eloquent\Traits\HasTriggers;
@@ -14,5 +14,5 @@ class :model: extends Model
      * 
      * @var array
      */
-    public $guarded = [];
+    protected $guarded = [];
 }

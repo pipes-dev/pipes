@@ -71,9 +71,9 @@ class CopyStubsAction
         $folder = Str::plural($model);
         $trigger = Str::snake($package) . '::' . Str::snake($folder);
 
-        $cli->line("[PIPES] Creating $model model as $package...");
+        $cli->line("[PIPES] Creating $model model at $package...");
 
-        $domainPath = base_path("packages/$package/Domains/$folder");
+        $domainPath = base_path("packages/$package/Models/$folder");
 
         try {
 
