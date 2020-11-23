@@ -48,10 +48,22 @@ class Stream
      */
     public function getActions(string $trigger): array
     {
-        $actions = optional($this->actions)[$trigger] ?? [];
+        $actions = [];
+
+        // Find all dispatchable triggers
+        $triggers = collect($this->getTriggers())->filter(function ($value) use ($trigger) {
+            return fnmatch($value, $trigger);
+        })->toArray();
+
+        // Get all actions that matches the trigger
+        foreach ($triggers as $trigger) {
+            $actions = [...$actions, ...(optional($this->actions)[$trigger] ?? [])];
+        }
+
+        // Order the triggers by priority
         return collect($actions)->sort(function ($a, $b) {
-            $a = isset($a::$priority) ? $a::$priority : 10;
-            $b = isset($b::$priority) ? $b::$priority : 10;
+            $a = isset($a::$priority) ? $a::$priority : 50;
+            $b = isset($b::$priority) ? $b::$priority : 50;
 
             if ($a === $b) {
                 return 0;
