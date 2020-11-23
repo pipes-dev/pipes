@@ -15,7 +15,7 @@ class ListActionsAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:list:actions'
+        '_pipes::commands:list:action'
     ];
 
     /**
