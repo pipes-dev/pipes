@@ -1,0 +1,7 @@
+<?php
+
+namespace Packages\:package:\Controllers\:namespace:;
+
+class :classname:
+{
+}

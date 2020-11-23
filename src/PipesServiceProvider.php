@@ -28,8 +28,11 @@ class PipesServiceProvider extends ServiceProvider
         // Make model actions
         \Pipes\Actions\Models\Create\CopyStubsAction::class,
 
-        // Make aciton actions
+        // Make action actions
         \Pipes\Actions\Actions\Create\CopyStubsAction::class,
+
+        // Make controller actions
+        \Pipes\Actions\Controllers\Create\CopyStubsAction::class,
     ];
 
     /**
