@@ -7,6 +7,22 @@ use Pipes\Support\ServiceProvider;
 class :package:ServiceProvider extends ServiceProvider
 {
     /**
+     * $_routes
+     * 
+     * @var array
+     */
+    protected $_routes = [
+        __DIR__.'/Routes/admin.php'
+    ];
+
+    /**
+     * $_actions
+     * 
+     * @var array
+     */
+    protected $_actions = [];
+
+    /**
      * Register any application services.
      *
      * @return void

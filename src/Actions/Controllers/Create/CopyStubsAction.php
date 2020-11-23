@@ -1,10 +1,10 @@
 <?php
 
-namespace Pipes\Actions\Models\Create;
+namespace Pipes\Actions\Controllers\Create;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 use Pipes\Services\TemplateService;
+use Illuminate\Support\Str;
 use Throwable;
 
 class CopyStubsAction
@@ -17,7 +17,7 @@ class CopyStubsAction
      * @var string[]
      */
     public static $triggers = [
-        '_pipes::commands:make:model'
+        '_pipes::commands:make:controller'
     ];
 
     /**
@@ -66,37 +66,36 @@ class CopyStubsAction
      */
     public function execute($cli, $next)
     {
+        $namespace = Str::beforeLast($cli->argument('name'), '\\');
+        $classname = class_basename($cli->argument('name'));
+        $folder = str_replace($classname, '', str_replace('\\', '/', $namespace));
         $package = $cli->options()['package'];
-        $model = $cli->argument('name');
-        $folder = Str::plural($model);
-        $trigger = Str::snake($package) . '::' . Str::snake($folder);
 
-        $cli->line("[PIPES] Creating $model model as $package...");
+        $cli->line("[PIPES] Creating $classname controller at $package...");
 
-        $domainPath = base_path("packages/$package/Domains/$folder");
+        $destFolder = base_path("packages/$package/Controllers/$folder");
 
         try {
 
             // Create domain folder
-            if (!$this->__fileSystem->isDirectory($domainPath)) {
-                $this->__fileSystem->makeDirectory($domainPath);
+            if (!$this->__fileSystem->isDirectory($destFolder)) {
+                $this->__fileSystem->makeDirectory($destFolder);
             }
 
             // Copy to folder
             $this->__fileSystem->copy(
-                $this->__stubsPath . "/model.php.stub",
-                "$domainPath/$model.php.stub"
+                $this->__stubsPath . "/controller.php.stub",
+                "$destFolder/$classname.php.stub"
             );
 
             // Replaces stub content
-            $this->__templateService->replaceContents($domainPath, [
-                ':trigger:' => $trigger,
+            $this->__templateService->replaceContents($destFolder, [
+                ':classname:' => $classname,
+                ':namespace:' => $namespace,
                 ':package:' => $package,
-                ':folder:' => $folder,
-                ':model:' => $model,
             ]);
 
-            $cli->info("[PIPES] $model was created with success!");
+            $cli->info("[PIPES] $classname was created with success!");
         } catch (Throwable $e) {
             $cli->error($e->getMessage());
         }
