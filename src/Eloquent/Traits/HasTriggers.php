@@ -43,7 +43,7 @@ trait HasTriggers
 
         $parts = explode('\\', $namespace);
 
-        return Str::snake($parts[1]) . ':' . Str::snake(Arr::last($parts));
+        return Str::snake($parts[1]) . '::' . Str::snake(Arr::last($parts));
     }
 
     /**
