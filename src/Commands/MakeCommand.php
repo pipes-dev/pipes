@@ -19,7 +19,7 @@ class MakeCommand extends Command
      * Command signature
      *
      */
-    public $signature = 'pipes:make {type} {name} {--package=?}';
+    public $signature = 'pipes:make {type} {name} {--package=} {--create=} {--table=}';
 
     /**
      * Command description
