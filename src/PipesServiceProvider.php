@@ -21,6 +21,9 @@ class PipesServiceProvider extends ServiceProvider
         \Pipes\Actions\Packages\Create\UpdateConfigFileAction::class,
         \Pipes\Actions\Packages\Create\CopyStubsAction::class,
 
+        // Create package actions
+        \Pipes\Actions\Packages\Migration\MigrationAction::class,
+
         // Remove package actions
         \Pipes\Actions\Packages\Remove\UpdateConfigFileAction::class,
         \Pipes\Actions\Packages\Remove\RemoveFolderAction::class,
