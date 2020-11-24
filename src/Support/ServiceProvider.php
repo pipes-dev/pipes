@@ -4,10 +4,12 @@ namespace Pipes\Support;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Pipes\Support\Traits\HasActions;
+use Pipes\Support\Traits\HasMigrations;
 use Pipes\Support\Traits\HasRoutes;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    use HasMigrations;
     use HasActions;
     use HasRoutes;
 
@@ -21,6 +23,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
+        $this->__bootMigrations();
         $this->__bootActions();
         $this->__bootRoutes();
     }

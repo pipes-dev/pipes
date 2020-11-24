@@ -77,6 +77,6 @@ trait HasTriggers
      */
     protected function initializeHasTriggers()
     {
-        Stream::send(static::getNameSpace() . ":init", $this);
+        Stream::send(static::getNameSpace() . ":booting", $this);
     }
 }
