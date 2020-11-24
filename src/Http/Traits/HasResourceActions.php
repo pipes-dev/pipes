@@ -12,16 +12,20 @@ trait HasResourceActions
      * 
      * @var boolean
      */
-    protected $_shouldPaginate = true;
+    protected $_shouldPaginate = false;
 
     /**
      * index
-     *
+     * 
+     * List all resources
+     * 
+     * @author Gustavo Vilas Bôas
+     * @since 23/11/2020
      */
     public function index()
     {
         $namespace = $this->_model::getNameSpace();
-        return Stream::send("$namespace:index", [$this->model], function ($model, $next) {
+        return Stream::send("$namespace:index", new $this->_model, function ($model, $next) {
             if ($this->_shouldPaginate) {
                 return $next($model->paginate());
             }
@@ -32,19 +36,29 @@ trait HasResourceActions
     /**
      * show
      *
+     * Show a specific resource
+     * 
+     * @author Gustavo Vilas Bôas
+     * @since 23/11/2020
      */
     public function show($id)
     {
         $namespace = $this->_model::getNameSpace();
 
-        $record = $this->model->find($id);
+        $record = $this->_model::find($id);
 
-        return Stream::send("$namespace:show", $record);
+        return Stream::send("$namespace:show", $record, function ($args, $next) {
+            return $next($args);
+        });
     }
 
     /**
      * update
      *
+     * Update a resource
+     * 
+     * @author Gustavo Vilas Bôas
+     * @since 23/11/2020
      */
     public function update($id, Request $request)
     {
@@ -65,26 +79,32 @@ trait HasResourceActions
     /**
      * store
      *
+     * Creates a new resource
+     * 
+     * @author Gustavo Vilas Bôas
+     * @since 23/11/2020
      */
-    public function store($data)
+    public function store(Request $request)
     {
         $namespace = $this->_model::getNameSpace();
 
-        return Stream::send("$namespace:store", $data, function ($args, $next) {
-            return $next($this->model->create($args));
+        return Stream::send("$namespace:store", $request->all(), function ($args, $next) {
+            return $next($this->_model::create($args));
         });
     }
 
     /**
      * destroy
      *
+     * Removes a resource
+     * 
+     * @author Gustavo Vilas Bôas
      */
     public function destroy($id)
     {
         $namespace = $this->_model::getNameSpace();
-
         return Stream::send("$namespace:destroy", $id, function ($args, $next) {
-            return $next($this->model->create($args));
+            return $next($this->_model::destroy($args));
         });
     }
 }

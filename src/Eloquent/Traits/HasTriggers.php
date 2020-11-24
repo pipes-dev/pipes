@@ -39,7 +39,7 @@ trait HasTriggers
      */
     public static function getNameSpace(): string
     {
-        $namespace = get_class(resolve(static::class));
+        $namespace = static::class;
 
         $parts = explode('\\', $namespace);
 
@@ -65,5 +65,18 @@ trait HasTriggers
                 Stream::send($namespace . ":{$trigger}", $model);
             });
         }
+    }
+
+    /**
+     * initializeHasTriggers
+     * 
+     * Dispatch initialized event
+     * 
+     * @author Gustavo Vilas Boas
+     * @since 13/11/2020
+     */
+    protected function initializeHasTriggers()
+    {
+        Stream::send(static::getNameSpace() . ":init", $this);
     }
 }

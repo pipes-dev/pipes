@@ -2,13 +2,10 @@
 
 namespace Packages\:package:\Models\:folder:;
 
-use Illuminate\Database\Eloquent\Model;
-use Pipes\Eloquent\Traits\HasTriggers;
+use Pipes\Eloquent\Model;
 
 class :model: extends Model
 {
-    use HasTriggers;
-
     /**
      * $guarded
      * 
