@@ -23,7 +23,7 @@ class :package:ServiceProvider extends ServiceProvider
      * @var array
      */
     protected $_actions = [
-        __DIR__ . '/Actions'
+        "Packages\\:package:\\Actions\\" => __DIR__ . '/Actions'
     ];
 
     /**

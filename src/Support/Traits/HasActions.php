@@ -24,11 +24,8 @@ trait HasActions
      * @author Gustavo Vilas Boas
      * @since 23/11/2020
      */
-    private function __scanActionsFolder($folder)
+    private function __scanActionsFolder(string $namespace, string $folder)
     {
-        // Discovery service provider namespace
-        $namespace = Str::beforeLast(get_class($this), "\\");
-
         // Get all files from actions folder
         $files = File::allFiles($folder);
 
@@ -38,7 +35,7 @@ trait HasActions
         // Parse and add full class namespace to actions array
         foreach ($files as $file) {
             $classname = Str::replaceLast('.php', '', $file->getRelativePathname());
-            $actions[] = str_replace('/', '\\', $namespace . '\\Actions\\' . $classname);
+            $actions[] = str_replace('/', '\\', $namespace . $classname);
         }
 
         // Return the parsed actions
@@ -55,8 +52,8 @@ trait HasActions
      */
     public function __bootActions()
     {
-        $actions = collect($this->_actions)->flatMap(function ($folder) {
-            return $this->__scanActionsFolder($folder);
+        $actions = collect($this->_actions)->flatMap(function ($folder, $key) {
+            return $this->__scanActionsFolder($key, $folder);
         })->flatten();
 
         foreach ($actions as $action) {

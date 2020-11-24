@@ -17,7 +17,8 @@ class PipesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $_actions = [
-        __DIR__ . '/Actions'
+        'Pipes\\Eloquent\\Actions\\' => __DIR__ . '/Eloquent/Actions',
+        'Pipes\\Actions\\' => __DIR__ . '/Actions',
     ];
 
     /**

@@ -5,16 +5,18 @@ namespace Pipes\Eloquent;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Support\Str;
 use Pipes\Eloquent\Traits\HasTriggers;
+use Pipes\Eloquent\Traits\HasRules;
+use Illuminate\Support\Str;
 
 class Model extends EloquentModel
 {
-    use HasTriggers;
     use Macroable {
-        Macroable::__call as macroCall;
         Macroable::__callStatic as macroCallStatic;
+        Macroable::__call as macroCall;
     }
+    use HasTriggers;
+    use HasRules;
 
     /**
      * Handle dynamic method calls into the model.
